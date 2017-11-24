@@ -1,4 +1,4 @@
-package app;
+package apps;
 
 import java.io.IOException;
 import java.net.URL;
