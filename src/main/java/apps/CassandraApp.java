@@ -30,6 +30,15 @@ public class CassandraApp {
         for(Map<String, String> row: results) {
             System.out.println(row.get("ENTITYID") + ": " + row.get("STATE"));
         }
+        columnNameToValue.put("STATE", "updated");
+        cd.insertValues("sameer", "table1", columnNameToValue);
+        results = cd.getValue("sameer", "table1",
+                "ENTITYID", "sameer-id-1", Arrays.asList(new String [] {"ENTITYID", "STATE"}));
+
+        System.out.println("results");
+        for(Map<String, String> row: results) {
+            System.out.println(row.get("ENTITYID") + ": " + row.get("STATE"));
+        }
         cd.close();
     }
 
