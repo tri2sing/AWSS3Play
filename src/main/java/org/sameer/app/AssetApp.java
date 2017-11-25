@@ -15,7 +15,7 @@ import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class AssetApp extends Application<AssetAppConfig>{
+public class AssetApp extends Application<AssetAppConfig> {
     @Override
     public void run(AssetAppConfig assetAppConfig, Environment environment) throws Exception {
         Injector injector = createInjector(assetAppConfig);
@@ -26,7 +26,7 @@ public class AssetApp extends Application<AssetAppConfig>{
         CassandraConfig cassandraConfig = assetAppConfig.getCassandraConfig();
         log.info(cassandraConfig.toString());
         CassandraDao cassandraDao = new CassandraDao(cassandraConfig.getClusterNode(), cassandraConfig.getPort());
-        AssetBl assetBl = new AssetBl(cassandraDao);
+        AssetBl assetBl = new AssetBl(cassandraDao, assetAppConfig.getS3bucket());
         return Guice.createInjector(new AbstractModule() {
             @Override
             protected void configure() {
@@ -34,10 +34,9 @@ public class AssetApp extends Application<AssetAppConfig>{
                 bind(AssetBl.class).toInstance(assetBl);
             }
         });
-
     }
 
-    public static void main(String [] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         new AssetApp().run(args);
     }
 }

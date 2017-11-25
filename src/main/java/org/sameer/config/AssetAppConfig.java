@@ -14,4 +14,8 @@ public class AssetAppConfig extends Configuration {
     @NotNull
     @JsonProperty
     private CassandraConfig cassandraConfig;
+
+    @NotNull
+    @JsonProperty
+    private String s3bucket;
 }

@@ -42,7 +42,7 @@ public class CassandraDao {
         session.execute(sb.toString());
     }
 
-    public void createTable(String keyspaceName, String tableName, Map<String, String> columnNameToTypes, List<String> primaryKeys) {
+    public void createTableIfNotExists(String keyspaceName, String tableName, Map<String, String> columnNameToTypes, List<String> primaryKeys) {
         StringBuffer cql = new StringBuffer("create table if not exists ").append(keyspaceName).append(".").append(tableName).append(" (");
         for (Map.Entry<String, String> column : columnNameToTypes.entrySet()) {
             cql.append(column.getKey()).append(" ").append(column.getValue()).append((", "));
@@ -53,7 +53,7 @@ public class CassandraDao {
         session.execute(cql.toString());
     }
 
-    public void insertValues (String keyspaceName, String tableName, Map<String, String> columnNameToValues) {
+    public void insertValues(String keyspaceName, String tableName, Map<String, String> columnNameToValues) {
         StringBuffer cql = new StringBuffer("insert into ").append(keyspaceName).append(".").append(tableName).append(" ");
         StringBuffer names = new StringBuffer("(");
         StringBuffer holders = new StringBuffer("(");
@@ -72,15 +72,15 @@ public class CassandraDao {
         session.execute(new SimpleStatement(cql.toString(), values.toArray()));
     }
 
-    public List<Map<String, String>> getValue (String keyspaceName, String tableName, String columnName, String matchingValue, List<String> columnsWanted) {
+    public List<Map<String, String>> getValue(String keyspaceName, String tableName, String columnName, String matchingValue, List<String> columnsWanted) {
         List<Map<String, String>> result = new LinkedList<>();
         StringBuffer cql = new StringBuffer("select ").append(String.join(",", columnsWanted));
         cql.append(" FROM ").append(keyspaceName).append(".").append(tableName).append(" ");
         cql.append("WHERE ").append(columnName).append(" = ?");
         ResultSet rs = session.execute(new SimpleStatement(cql.toString(), matchingValue));
         for (Row row : rs) {
-            Map<String , String> rowMap = new HashMap<>();
-            for(String name: columnsWanted) {
+            Map<String, String> rowMap = new HashMap<>();
+            for (String name : columnsWanted) {
                 rowMap.put(name, row.getString(name));
             }
             result.add(rowMap);

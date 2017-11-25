@@ -1,6 +1,5 @@
 package org.sameer.resource;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.validation.constraints.NotNull;
@@ -16,11 +15,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.sameer.bl.AssetBl;
+import org.sameer.bl.AssetBlConstants;
 
 import com.google.inject.Inject;
 
 @Path("/asset")
-@Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AssetResource {
     private AssetBl assetBl;
@@ -31,24 +30,29 @@ public class AssetResource {
     }
 
     @POST
-    public Response createAssetId() {
-        Map<String, String> result = new HashMap<>();
-
-        return Response.ok(result).build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createAsset() {
+        Map<String, String> result = assetBl.createAsset();
+        return Response.ok(result).type(MediaType.APPLICATION_JSON).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Response updateAssetStatus(@NotNull @PathParam("id") String id, Map<String, String> status) {
-
+    public Response updateAsset(@NotNull @PathParam("id") String id, @NotNull Map<String, String> body) {
+        String status = body.get("status");
+        if(status == null || !status.toLowerCase().equals(AssetBlConstants.STATUS_UPLOADED))
+            return Response.status(Response.Status.BAD_REQUEST).entity("Incorrect status information").build();
+        assetBl.updateAsset(id, status);
         return Response.ok().build();
     }
 
     @GET
     @Path("/{id}")
-    public Response getDowloadUrl(@NotNull @PathParam("id") String id, @QueryParam("timeout") Integer timeout) {
-        Map<String, String> result = new HashMap<>();
-
-        return Response.ok(result).build();
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAsset(@NotNull @PathParam("id") String id, @QueryParam("timeout") Integer timeoutSeconds) {
+        Map<String, String> result = assetBl.getAsset(id, timeoutSeconds);
+        if (result == null)
+            return Response.status(Response.Status.BAD_REQUEST).entity("Incorrect asset id or status").build();
+        return Response.ok(result).type(MediaType.APPLICATION_JSON).build();
     }
 }
