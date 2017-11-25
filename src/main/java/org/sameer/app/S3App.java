@@ -10,6 +10,9 @@ import org.sameer.helper.S3Helper;
 
 import com.amazonaws.HttpMethod;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class S3App {
     private S3Helper s3Helper = new S3Helper();
 
@@ -19,7 +22,7 @@ public class S3App {
     }
 
     public void upload(String bucket, String key, long expiration, String filePath) throws IOException {
-        URL url = s3Helper.generateSignedUrl(bucket, key, HttpMethod.POST, expiration);
+        URL url = s3Helper.generateSignedUrl(bucket, key, HttpMethod.PUT, expiration);
         String contents = new String(Files.readAllBytes(Paths.get(filePath)));
         HttpHelper.upload(url, contents);
     }
@@ -40,10 +43,8 @@ public class S3App {
         long expiration = Integer.parseInt(S3App.getArgValue("expiration"));
 
         s3App.upload(bucket, key, expiration, path);
-        System.out.println("Done 2");
         String content = s3App.download(bucket, key, expiration);
         System.out.println(content);
-        System.out.println("Done 3");
 
     }
 }

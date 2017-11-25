@@ -8,7 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpHelper {
-    public static void upload(URL url, String content) throws IOException {
+    public static int upload(URL url, String content) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
         connection.setRequestMethod("PUT");
@@ -17,7 +17,7 @@ public class HttpHelper {
         out.close();
         // Weird behavior. If I request a response code it seems to guarantee that the file shows up in S3 right away.
         // If I don't request the response code, the file does not always upload even though there is no exception.
-        int responseCode = connection.getResponseCode();
+        return connection.getResponseCode();
     }
 
     public static String download(URL url) throws IOException {
