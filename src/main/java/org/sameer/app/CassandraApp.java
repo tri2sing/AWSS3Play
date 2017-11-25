@@ -1,4 +1,4 @@
-package app;
+package org.sameer.app;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import dao.CassandraDao;
+import org.sameer.dao.CassandraDao;
 
 public class CassandraApp {
     public static void main(String[] args) {

@@ -1,14 +1,14 @@
-package app;
+package org.sameer.app;
 
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import com.amazonaws.HttpMethod;
+import org.sameer.helper.HttpHelper;
+import org.sameer.helper.S3Helper;
 
-import helper.HttpHelper;
-import helper.S3Helper;
+import com.amazonaws.HttpMethod;
 
 public class S3App {
     private S3Helper s3Helper = new S3Helper();

@@ -1,4 +1,4 @@
-package dao;
+package org.sameer.dao;
 
 import java.util.HashMap;
 import java.util.LinkedList;

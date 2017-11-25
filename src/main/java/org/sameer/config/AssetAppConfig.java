@@ -1,4 +1,4 @@
-package config;
+package org.sameer.config;
 
 import javax.validation.constraints.NotNull;
 

@@ -1,7 +1,8 @@
-package app;
+package org.sameer.app;
 
-import config.AssetAppConfig;
-import config.CassandraConfig;
+import org.sameer.config.AssetAppConfig;
+import org.sameer.config.CassandraConfig;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
 import lombok.extern.slf4j.Slf4j;
