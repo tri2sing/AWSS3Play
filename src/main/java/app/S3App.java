@@ -1,4 +1,4 @@
-package apps;
+package app;
 
 import java.io.IOException;
 import java.net.URL;
@@ -7,8 +7,8 @@ import java.nio.file.Paths;
 
 import com.amazonaws.HttpMethod;
 
-import helpers.HttpHelper;
-import helpers.S3Helper;
+import helper.HttpHelper;
+import helper.S3Helper;
 
 public class S3App {
     private S3Helper s3Helper = new S3Helper();
@@ -19,7 +19,7 @@ public class S3App {
     }
 
     public void upload(String bucket, String key, long expiration, String filePath) throws IOException {
-        URL url = s3Helper.generateSignedUrl(bucket, key, HttpMethod.PUT, expiration);
+        URL url = s3Helper.generateSignedUrl(bucket, key, HttpMethod.POST, expiration);
         String contents = new String(Files.readAllBytes(Paths.get(filePath)));
         HttpHelper.upload(url, contents);
     }
