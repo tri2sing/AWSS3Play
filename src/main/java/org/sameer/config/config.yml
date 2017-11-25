@@ -2,3 +2,7 @@ cassandraConfig:
   clusterNode: 127.0.0.1
   port: 9042
 
+server:
+  applicationConnectors:
+  - type: http
+    port: 9080
