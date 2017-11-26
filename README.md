@@ -22,10 +22,12 @@ Sample  response
 ```
 
 ## Pre-requisites
-To develop this service you need 
+### Build
+To build this service you need 
 * Java 1.8
 * Maven (this was developed with 3.3.9)
 
+### Execute
 To execute this service you need
 * AWS credentials stored in ~/.aws/credentials
 ```
@@ -53,3 +55,11 @@ server:
     port: 9080
 
 ```
+
+## Building the service
+The steps to build the service are:
+* Ensure that the pre-requisites to build the service are met.
+* Clone this repository
+* Go to the AWSS3Play directory
+* Run "mvn package" command
+
