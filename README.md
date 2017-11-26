@@ -31,7 +31,8 @@ To build this service you need
 * Maven (this was developed with 3.3.9)
 
 ### Execute
-To execute this service you need your spefic details for the following configuration files
+To execute this service you need 
+* A running Cassandra installation
 * AWS credentials stored in ~/.aws/credentials
 ```
 [default]
@@ -41,21 +42,21 @@ aws_secret_access_key = <your aws access key>
 * AWS region information stored in ~/.aws/config
 ```
 [default]
-region = us-east-1
+region = <your aws region>
 ```
 * Cassandra cluster
 * Application config file (e.g. config.yml)
 ```
 cassandraConfig:
-  clusterNode: 127.0.0.1
-  port: 9042
+  clusterNode: <IP of a node of your cluster>
+  port: <Port of the cluster node>
 
 s3bucket: <your s3 bucket name>
 
 server:
   applicationConnectors:
   - type: http
-    port: 9080
+    port: <Port on which you want the service to run>
 
 ```
 
@@ -71,6 +72,7 @@ mvn package
 
 ## Running the Service
 The steps to run the service are.
+* Ensure that your Cassandra cluster is running
 * Deploy the following where you want to run the service
 ** ~/.aws/credentials
 ** ~/.aws/config
