@@ -43,7 +43,7 @@ public class AssetBl {
         insertRow(id, status);
     }
 
-    public Map<String, String> getAsset(String id, Integer timeoutSeconds) {
+    public Map<String, String> getAsset(@NotNull String id, Integer timeoutSeconds) {
         Map<String, String> row = getRow(id);
         if (row == null || !row.get("STATUS").toLowerCase().equals(AssetBlConstants.STATUS_UPLOADED))
             return null;
