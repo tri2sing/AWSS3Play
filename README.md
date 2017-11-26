@@ -28,7 +28,7 @@ To build this service you need
 * Maven (this was developed with 3.3.9)
 
 ### Execute
-To execute this service you need
+To execute this service you need your spefic details for the following configuration files
 * AWS credentials stored in ~/.aws/credentials
 ```
 [default]
@@ -56,10 +56,21 @@ server:
 
 ```
 
-## Building the service
+## Building the Service
 The steps to build the service are:
 * Ensure that the pre-requisites to build the service are met.
 * Clone this repository
 * Go to the AWSS3Play directory
 * Run "mvn package" command
 
+## Running the Service
+The steps to run the service are.
+* Deploy the following where you want to run the service
+** ~/.aws/credentials
+** ~/.aws/config
+** config.yml
+** AWSS3Play-1.0.jar
+* Run the following command 
+```
+java -jar <path to AWSS3Play-1.0.jar> server <path to config.yml>
+```
