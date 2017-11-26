@@ -61,7 +61,10 @@ The steps to build the service are:
 * Ensure that the pre-requisites to build the service are met.
 * Clone this repository
 * Go to the AWSS3Play directory
-* Run "mvn package" command
+* Run the following command
+```
+mvn package
+```
 
 ## Running the Service
 The steps to run the service are.
@@ -74,3 +77,4 @@ The steps to run the service are.
 ```
 java -jar <path to AWSS3Play-1.0.jar> server <path to config.yml>
 ```
+* Execute clients calls (POST/PUT/GET) to the service
