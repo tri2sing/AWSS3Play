@@ -1,4 +1,6 @@
 # AWSS3Play by Sameer Adhikari
+
+## Introduction
 This repository provides an implementation of a service which generates pre-signed AWS S3 URLs. It supports the following methods.
 
 ```
@@ -19,3 +21,35 @@ Sample  response
 {    “download_url”:  <s3-signed-url-for-upload> }
 ```
 
+## Pre-requisites
+To develop this service you need 
+* Java 1.8
+* Maven (this was developed with 3.3.9)
+
+To execute this service you need
+* AWS credentials stored in ~/.aws/credentials
+```
+[default]
+aws_access_key_id = <your aws access key id> 
+aws_secret_access_key = <your aws access key>
+```
+* AWS region information stored in ~/.aws/config
+```
+[default]
+region = us-east-1
+```
+* Cassandra cluster
+* Application config file (e.g. config.yml)
+```
+cassandraConfig:
+  clusterNode: 127.0.0.1
+  port: 9042
+
+s3bucket: <your s3 bucket name>
+
+server:
+  applicationConnectors:
+  - type: http
+    port: 9080
+
+```
