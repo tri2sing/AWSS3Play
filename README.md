@@ -1,7 +1,9 @@
 # AWSS3Play by Sameer Adhikari
 
 ## Introduction
-This repository provides an implementation of a service which generates pre-signed AWS S3 URLs. It supports the following methods.
+This repository provides an implementation of a service which generates pre-signed AWS S3 URLs. It is designed to be scalable at the both the web layer and the datastore layer. The web layer is scalable because each instance is session-less. The datastore is scalable by the choice of Cassandra. 
+
+The service supports the following methods.
 
 ```
 POST  /asset
