@@ -20,6 +20,9 @@ GET  /asset/<asset-id>?timeout=100
 Sample  response
 {    “download_url”:  <s3-signed-url-for-upload> }
 ```
+Here is what you can do with the pre-signed urls:
+* You can upload an object to the upload_url using a POST call
+* You can download the object from the dowload_url using a GET call if you have set the status to uploaded
 
 ## Pre-requisites
 ### Build
