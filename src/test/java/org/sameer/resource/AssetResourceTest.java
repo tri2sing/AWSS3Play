@@ -1,9 +1,7 @@
 package org.sameer.resource;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.HashMap;
@@ -16,7 +14,6 @@ import org.junit.Before;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.mockito.exceptions.verification.WantedButNotInvoked;
 import org.sameer.bl.AssetBl;
 
 import io.dropwizard.testing.junit.ResourceTestRule;
